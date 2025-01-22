@@ -4,18 +4,29 @@ let participantes = [];
 
 
 function agregarAmigo() {
-    //agrego valor al array
-    participantes.push(document.getElementById("amigo").value);
-    //limpio el input
-    document.getElementById("amigo").value="";
-    //procedo a imprimir la lisa en pantalla
-    listarParticipantes()
-    return;
+    //verifico el input
+    if (document.getElementById("amigo").value == "") {
+        alert("ingrese el nombre de su amigo por favor");
     }
 
-function listarParticipantes(){
+    else {
+        //agrego valor al array
+        participantes.push(document.getElementById("amigo").value);
+        console.log(participantes);
+        console.log(participantes.length);
+        //limpio el input
+        document.getElementById("amigo").value = "";
+        //procedo a imprimir la lisa en pantalla
+        listarParticipantes();
+    }
+    return;
+}
+
+
+
+function listarParticipantes() {
     let lista = document.querySelector("#listaAmigos");
-    lista.innerHTML = "<li>"+ participantes[participantes.length-1]+"</li>"+lista.innerHTML;
+    lista.innerHTML = "<li>" + participantes[participantes.length - 1] + "</li>" + lista.innerHTML;
     /* Segun el ejercicio debia recorrer el array con un for pero se me hizo mucho mas practico y 
     optimizado una funcion sin embarg dejo el for comentado
     lista.innerHTML ="";
@@ -25,5 +36,22 @@ function listarParticipantes(){
     */
     return;
 }
+
+
+
+let boton = document.getElementById('botonAgregar');
+//función para simular el clic del botón
+function activarBotonConEnter(event) {
+    //verifico si la tecla presionada es "Enter"
+    if (event.key === 'Enter') {
+        //activa el clic en el botón
+        boton.click();
+    }
+}
+// Escuchar el evento de tecla presionada en todo el documento
+document.addEventListener('keydown', activarBotonConEnter);
+
+
+
 
 
