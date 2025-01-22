@@ -23,9 +23,9 @@ function agregarAmigo() {
 }
 
 
-
+var lista = document.querySelector("#listaAmigos"); 
 function listarParticipantes() {
-    let lista = document.querySelector("#listaAmigos");
+    
     lista.innerHTML = "<li>" + participantes[participantes.length - 1] + "</li>" + lista.innerHTML;
     /* Segun el ejercicio debia recorrer el array con un for pero se me hizo mucho mas practico y 
     optimizado una funcion sin embarg dejo el for comentado
@@ -54,4 +54,18 @@ document.addEventListener('keydown', activarBotonConEnter);
 
 
 
+function sortearAmigo() {
+    //verificar array 
+    if (participantes.length < 0) {
+        alert("debe ingresar los nombres de sus amigos primero")
+    }
+    else {
+        lista.innerHTML="";
+        //generando numero random
+        let Nrandom = Math.floor(Math.random()*participantes.length);
+        //usar numero random para seleccionar participante del array y mostrarlo en pantalla
+        let resultado = document.querySelector("#resultado");
+        resultado.innerHTML = "El amigo secreto sorteado es: " +participantes[Nrandom];
+    }
+}
 
