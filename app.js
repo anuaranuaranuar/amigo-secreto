@@ -23,9 +23,9 @@ function agregarAmigo() {
 }
 
 
-var lista = document.querySelector("#listaAmigos"); 
+var lista = document.querySelector("#listaAmigos");
 function listarParticipantes() {
-    
+
     lista.innerHTML = "<li>" + participantes[participantes.length - 1] + "</li>" + lista.innerHTML;
     /* Segun el ejercicio debia recorrer el array con un for pero se me hizo mucho mas practico y 
     optimizado una funcion sin embarg dejo el for comentado
@@ -55,17 +55,57 @@ document.addEventListener('keydown', activarBotonConEnter);
 
 
 function sortearAmigo() {
+
     //verificar array 
-    if (participantes.length < 0) {
+    if (participantes.length < 1) {
         alert("debe ingresar los nombres de sus amigos primero")
     }
     else {
-        lista.innerHTML="";
-        //generando numero random
-        let Nrandom = Math.floor(Math.random()*participantes.length);
-        //usar numero random para seleccionar participante del array y mostrarlo en pantalla
-        let resultado = document.querySelector("#resultado");
-        resultado.innerHTML = "El amigo secreto sorteado es: " +participantes[Nrandom];
+        /* lista.innerHTML="";
+          //generando numero random
+          let Nrandom = Math.floor(Math.random()*participantes.length);
+          //usar numero random para seleccionar participante del array y mostrarlo en pantalla
+          
+          resultado.innerHTML = "El amigo secreto sorteado es: " +participantes[Nrandom];*/
+        let resultado = sortearLista(participantes);
+        let listar = document.querySelector("#resultado");
+        listar.innerHTML = ""; //limpiar nombres
+        for (j = 0; j < resultado.length; j++) {
+
+            listar.innerHTML = "El amigo secreto de " + resultado[j] + " es " + resultado[j < resultado.length - 1 ? j + 1 : 0] + "<br>" + listar.innerHTML;
+        }
+
+
+
+
+
+
+
+
     }
 }
+
+
+
+function sortearLista(array) {
+
+    let provicional = array.slice(); //copiamos el array
+    
+    for (i = 0; i < array.length; i++) {
+        let r = Math.floor(Math.random() * array.length);
+        [provicional[i], provicional[r]] = [provicional[r], provicional[i]];
+    }
+    return provicional;
+
+}
+
+
+
+
+
+
+
+
+
+
 
